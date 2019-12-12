@@ -18,7 +18,9 @@ apt install --no-install-recommends \
   dialog \
   python-pip \
   python-dev \
-  ffmpeg
+  ffmpeg \
+  x11vnc \
+  xvfb \
 
 pip install --upgrade pip==9.0.3
 pip install -U setuptools
