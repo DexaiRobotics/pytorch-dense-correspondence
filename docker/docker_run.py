@@ -34,11 +34,12 @@ if __name__=="__main__":
     dense_correspondence_source_dir = os.path.join(home_directory, 'code')
 
     cmd = "xhost +local:root \n"
-    cmd += "nvidia-docker run "
+    cmd += "docker run --gpus all"
     if args.container:
         cmd += " --name %(container_name)s " % {'container_name': args.container}
 
-    cmd += " -e DISPLAY -e QT_X11_NO_MITSHM=1 -v /tmp/.X11-unix:/tmp/.X11-unix:rw "     # enable graphics 
+    cmd += " -e DISPLAY=${DISPLAY} -e QT_X11_NO_MITSHM=1 -v /tmp/.X11-unix:/tmp/.X11-unix:rw "     # enable graphics
+    cmd += " -v $HOME/.Xauthority:%(home_directory)s/.Xauthority:rw " % {'home_directory': home_directory}
     cmd += " -v %(source_dir)s:%(home_directory)s/code "  \
         % {'source_dir': source_dir, 'home_directory': home_directory}              # mount source
     cmd += " -v ~/.ssh:%(home_directory)s/.ssh " % {'home_directory': home_directory}   # mount ssh keys
@@ -54,7 +55,7 @@ if __name__=="__main__":
     cmd += " -v %s:%s/data_volume " %(config_yaml[host_name][user_name]['path_to_data_directory'], dense_correspondence_source_dir)
 
     # expose UDP ports
-    cmd += " -p 8888:8888 "
+    cmd += " -p 4200:4200 "
     cmd += " --ipc=host "
 
     # share host machine network
