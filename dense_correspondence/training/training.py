@@ -581,6 +581,7 @@ class DenseCorrespondenceTraining(object):
         # cmd = "python -m tensorboard.main"
         logging.info("setting up tensorboard_logger")
         cmd = "tensorboard --logdir=%s" %(self._tensorboard_log_dir)
+        subprocess.Popen([cmd], shell=True)
         self._tensorboard_logger = tensorboard_logger.Logger(self._tensorboard_log_dir)
         logging.info("tensorboard logger started")
 
