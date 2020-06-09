@@ -276,13 +276,20 @@ class DenseCorrespondenceEvaluation(object):
         for annotated_pair in cross_scene_data:
 
             scene_name_a = annotated_pair["image_a"]["scene_name"]
-            scene_name_b = annotated_pair["image_b"]["scene_name"] 
-
+            scene_name_b = annotated_pair["image_b"]["scene_name"]
+            
+            if not os.path.isdir(dataset.get_full_path_for_scene(scene_name_a))\
+            or not os.path.isdir(dataset.get_full_path_for_scene(scene_name_b)):
+                print("at least one of these scene names does not exist:", scene_name_a, scene_name_b)
+                continue
+            print("these scene names both exist:", scene_name_a, scene_name_b)
+            
             image_a_idx = annotated_pair["image_a"]["image_idx"]
             image_b_idx = annotated_pair["image_b"]["image_idx"]
 
             img_a_pixels = annotated_pair["image_a"]["pixels"]
             img_b_pixels = annotated_pair["image_b"]["pixels"]
+
 
             dataframe_list_temp =\
                 DenseCorrespondenceEvaluation.single_cross_scene_image_pair_quantitative_analysis(dcn,
@@ -1538,8 +1545,14 @@ class DenseCorrespondenceEvaluation(object):
         for annotated_pair in cross_scene_data:
 
             scene_name_a = annotated_pair["image_a"]["scene_name"]
-            scene_name_b = annotated_pair["image_b"]["scene_name"] 
-
+            scene_name_b = annotated_pair["image_b"]["scene_name"]
+            # some labeled cross scene data may not be in the configured dataset
+            # this checks that the scenes actually exist (i.e., have been downloaded)
+            if not os.path.isdir(dataset.get_full_path_for_scene(scene_name_a))\
+            or not os.path.isdir(dataset.get_full_path_for_scene(scene_name_b)):
+                print("at least one of these scene names does not exist:", scene_name_a, scene_name_b)
+                continue
+            print("these scene names exist:", scene_name_a, scene_name_b)    
             image_a_idx = annotated_pair["image_a"]["image_idx"]
             image_b_idx = annotated_pair["image_b"]["image_idx"]
 
@@ -2235,33 +2248,14 @@ class DenseCorrespondenceEvaluation(object):
                                                                              img_idx_b)
 
 class DenseCorrespondenceEvaluationPlotter(object):
+    """
+    This class contains plotting utilities. They are all
+    encapsulated as static methods
 
-    def __init__(self, config=None):
-        if config is None:
-            config_file = os.path.join(utils.getDenseCorrespondenceSourceDir(), 'config',
-                                       'dense_correspondence', 'evaluation',
-                                       'evaluation_plotter.yaml')
+    """
 
-            config = utils.getDictFromYamlFilename(config_file)
-
-        self._config = config
-
-    def load_dataframe(self, network_name):
-        """
-        Loads the specified dataframe for the given network specified in the config file
-        :param network_name:
-        :type network_name:
-        :return:
-        :rtype:
-        """
-
-        if network_name not in self._config['networks']:
-            raise ValueError("%s not in config" %(network_name))
-
-        path_to_csv = self._config['networks'][network_name]['path_to_csv']
-        path_to_csv = utils.convert_to_absolute_path(path_to_csv)
-        df = pd.read_csv(path_to_csv, index_col=0, parse_dates=True)
-        return df
+    def __init__(self):
+        pass
 
     @staticmethod
     def make_cdf_plot(ax, data, num_bins, label=None, x_axis_scale_factor=1):
@@ -2309,7 +2303,7 @@ class DenseCorrespondenceEvaluationPlotter(object):
         if masked:
             ax.set_xlabel('Pixel match error (masked), L2 (pixel distance)')
         else:
-            ax.set_xlabel('Pixel match error, L2 (pixel distance)')
+            ax.set_xlabel('Pixel match error (fraction of image), L2 (pixel distance)')
         ax.set_ylabel('Fraction of images')
 
         # ax.set_xlim([0,200])
