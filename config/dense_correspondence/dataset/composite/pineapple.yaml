@@ -1,4 +1,4 @@
-logs_root_path: code/data_volume/fusion_rosbags
+logs_root_path: fusion_rosbags
 
 single_object_scenes_config_files:
 - pineapple.yaml
