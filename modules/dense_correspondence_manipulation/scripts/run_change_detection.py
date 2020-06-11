@@ -61,8 +61,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--data_dir", type=str, required=False, help="full path to the processed/ folder of a top level log folder")
 
-    default_config_file = os.path.join(utils.getDenseCorrespondenceSourceDir(), 'config', 'stations', 'RLG_iiwa_1', 'change_detection.yaml')
-    parser.add_argument("--config_file", type=str, default=default_config_file)
+    parser.add_argument("--config_file", type=str, default=None)
 
     parser.add_argument('--current_dir', action='store_true', default=False, help="run the script with --data_dir set to the current directory. You should be in the processed/ subfolder")
 
@@ -83,4 +82,9 @@ if __name__ == "__main__":
     elif args.data_dir:
         data_folder = args.data_dir
 
-    run(data_folder, config_file=args.config_file, debug=args.debug, globalsDict=globalsDict)
+    if args.config_file is None:
+        config_file = os.path.join(data_folder, "change_detection.yaml")
+    else:
+        config_file = args.config_file
+
+    run(data_folder, config_file=config_file, debug=args.debug, globalsDict=globalsDict)
