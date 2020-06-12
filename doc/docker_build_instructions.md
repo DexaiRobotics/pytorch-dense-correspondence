@@ -14,15 +14,7 @@ The following is all of the steps to build a docker image for `pytorch-dense-cor
 
 1) Install [Docker for Ubuntu](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/)
   - Make sure to `sudo usermod -aG docker your-user` and then not run below docker scripts as `sudo`
-2) Install [`nvidia-docker`](https://github.com/NVIDIA/nvidia-docker). Make sure to use `nvidia-docker1` not `nvidia-docker2` as it has a known issue with OpenGL. See [this](https://github.com/RobotLocomotion/spartan/issues/201) issue. Follow the instructions on their webpage but replace
-```
-sudo apt-get install -y nvidia-docker2
-```
-with
-```
-sudo apt-get install -y nvidia-docker
-```
-You can test that your nvidia-docker installation is working by running
+2) Install [`nvidia-docker2`](https://github.com/NVIDIA/nvidia-docker). You can test that your nvidia-docker installation is working by running
 ```
 nvidia-docker run --rm nvidia/cuda nvidia-smi
 ```
@@ -32,13 +24,17 @@ sudo apt-get install nvidia-modprobe
 ```
 and then restart your machine.
 
+**Note**: It's possible that the latest nvidia-docker doesn't include `nvidia-smi`. Try testing your `docker` installation by running
+```
+nvidia-docker run --rm nvidia/cuda:10.0-base nvidia-smi.
+```
+instead.
+
 3) Clone, setup, and build docker image for `pytorch-dense-correspondence`. If using clone via `ssh`, you need to have ssh keys setup to clone the submodules. Make sure that these ssh keys don't have a password, otherwise it will not work.  Cloning via `https` should be OK.
 ```
 git clone git@github.com:RobotLocomotion/pytorch-dense-correspondence.git
 cd pytorch-dense-correspondence
-git submodule sync
-git submodule update --init --remote
-git submodule update
+git submodule update --init --recursive
 cd docker
 ./docker_build.py
 ```

@@ -1,11 +1,23 @@
+ip-172-31-0-61:
+  jtao:
+    path_to_data_directory: '/home/jtao/fullstack/src/log_robot'
+
 mango-hotel:
   hotel:
     path_to_data_directory: '/home/hotel/fullstack/src/log_robot'
 
 paladin-23:
   manuelli:
-    path_to_data_directory: '/home/manuelli/data'
+    path_to_data_directory: '/home/manuelli/data/pdc'
+
+paladin-44:
+  manuelli:
+    path_to_data_directory: '/media/hdd/data/pdc'
 
 iiwa-2:
   manuelli:
-    path_to_data_directory: '/home/manuelli/data'
+    path_to_data_directory: '/home/manuelli/data/pdc'
+
+wei:
+  wei:
+    path_to_data_directory: '/home/wei/data/pdc'

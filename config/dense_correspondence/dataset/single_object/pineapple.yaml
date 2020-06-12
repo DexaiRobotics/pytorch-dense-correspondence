@@ -1,0 +1,6 @@
+logs_root_path: fusion_rosbags
+object_id: "pineapple"
+train:
+- "hotel_pan_sixth_6in_015_pineapple_20191216T190317"
+test:
+- "hotel_pan_sixth_6in_015_pineapple_20191216T190317"

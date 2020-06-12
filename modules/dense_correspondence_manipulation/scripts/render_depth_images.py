@@ -7,8 +7,10 @@ import dense_correspondence_manipulation.change_detection.change_detection as ch
 import dense_correspondence_manipulation.utils.utils as utils
 from dense_correspondence_manipulation.utils.constants import *
 from director.timercallback import TimerCallback
+
+
 """
-Runs change detection to compute masks for each image
+Renders depth images against the entire scene
 """
 
 CONFIG_FILE = CHANGE_DETECTION_CONFIG_FILE
@@ -39,6 +41,9 @@ def run(data_folder, config_file=CONFIG_FILE, debug=False, globalsDict=None):
     changeDetection, obj_dict = change_detection.ChangeDetection.from_data_folder(data_folder, config=config, globalsDict=globalsDict,
                                                                                   background_data_folder=data_folder)
 
+    # set foreground mesh to actually be background mesh
+    changeDetection.foreground_reconstruction = changeDetection.background_reconstruction
+
     app = obj_dict['app']
     globalsDict['cd'] = changeDetection
     view = obj_dict['view']
@@ -60,8 +65,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--data_dir", type=str, default='/home/manuelli/code/data_volume/sandbox/drill_scenes/04_drill_long_downsampled')
 
-    default_config_file = os.path.join(utils.getDenseCorrespondenceSourceDir(), 'config', 'stations', 'RLG_iiwa_1', 'change_detection.yaml')
-    parser.add_argument("--config_file", type=str, default=default_config_file)
+    parser.add_argument("--config_file", type=str, default=None)
 
     parser.add_argument('--current_dir', action='store_true', default=False, help="run the script with --data_dir set to the current directory")
 
@@ -77,4 +81,9 @@ if __name__ == "__main__":
         print "running with data_dir set to current working directory . . . "
         data_folder = os.getcwd()
 
-    run(data_folder, config_file=args.config_file, debug=args.debug, globalsDict=globalsDict)
+    if args.config_file is None:
+        config_file = os.path.join(data_folder, "change_detection.yaml")
+    else:
+        config_file = args.config_file
+
+    run(data_folder, config_file=config_file, debug=args.debug, globalsDict=globalsDict)
