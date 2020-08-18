@@ -1,0 +1,12 @@
+logs_root_path: fusion_rosbags
+object_id: "romaine_pieces"
+train:
+- "hotel_pan_sixth_6in_012_romaine_20200805T223609"
+- "hotel_pan_sixth_6in_012_romaine_20200805T223717"
+- "hotel_pan_sixth_6in_012_romaine_20200805T224236"
+- "hotel_pan_sixth_6in_012_romaine_20200805T224343"
+- "hotel_pan_sixth_6in_012_romaine_20200805T224428"
+- "hotel_pan_sixth_6in_012_romaine_20200805T224713"
+- "hotel_pan_sixth_6in_012_romaine_20200805T225052"
+test:
+- "hotel_pan_sixth_6in_012_romaine_20200805T224517"
