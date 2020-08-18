@@ -256,8 +256,9 @@ class DenseCorrespondenceDataset(data.Dataset):
         img_idx = self.get_random_image_index(scene_name)
         return self.get_rgbd_mask_pose(scene_name, img_idx)
 
-
-    def get_img_idx_with_different_pose(self, scene_name, pose_a, threshold=0.2, angle_threshold=20, num_attempts=10):
+    # original thresholds:
+    # def get_img_idx_with_different_pose(self, scene_name, pose_a, threshold=0.2, angle_threshold=20, num_attempts=10):
+    def get_img_idx_with_different_pose(self, scene_name, pose_a, threshold=0.10, angle_threshold=10, num_attempts=10):
         """
         Try to get an image with a different pose to the one passed in. If one can't be found
         then return None
