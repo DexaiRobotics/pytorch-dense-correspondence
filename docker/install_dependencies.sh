@@ -36,4 +36,5 @@ pip install \
   pandas \
   tensorflow \
   future \
-  typing
+  typing \
+  tqdm
