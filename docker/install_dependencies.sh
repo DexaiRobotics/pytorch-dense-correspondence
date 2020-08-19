@@ -31,7 +31,7 @@ pip install -U setuptools
 apt-get -y install ipython ipython-notebook
 pip install \
   jupyter \
-  opencv-python \
+  opencv-python==4.2.0.32 \
   plyfile \
   pandas \
   tensorflow \
