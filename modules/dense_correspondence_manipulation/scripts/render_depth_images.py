@@ -28,9 +28,6 @@ def run(data_folder, config_file=CONFIG_FILE, debug=False, globalsDict=None):
         globalsDict = globals()
 
 
-
-
-    config_file = CONFIG_FILE
     config = utils.getDictFromYamlFilename(config_file)
 
     # make dimensions large so no cropping

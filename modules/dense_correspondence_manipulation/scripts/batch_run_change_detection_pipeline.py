@@ -18,7 +18,7 @@ def main():
     num_dirs = len(list_of_dirs)
     # list_of_dirs = ["04_drill_long_downsampled", "05_drill_long_downsampled"]
 
-    for idx, dir in enumerate(list_of_dirs):
+    for idx, dir in enumerate(list_of_dirs, 1):
 
         log_folder = os.path.join(parent_folder, dir)
         data_folder = os.path.join(log_folder, 'processed')

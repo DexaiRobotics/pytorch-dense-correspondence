@@ -31,9 +31,6 @@ def run(data_folder, config_file=CONFIG_FILE, debug=False, globalsDict=None,
         background_scene_data_folder = data_folder
 
 
-
-
-    config_file = CONFIG_FILE
     config = utils.getDictFromYamlFilename(config_file)
 
 

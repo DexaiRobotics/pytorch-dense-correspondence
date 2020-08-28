@@ -1,0 +1,14 @@
+logs_root_path: fusion_rosbags
+object_id: "kale"
+train:
+- "hotel_pan_sixth_6in_001_kale_20200624T154408"
+- "hotel_pan_sixth_6in_002_kale_20200624T154240"
+- "hotel_pan_sixth_6in_003_kale_20200624T154835"
+- "hotel_pan_sixth_6in_012_kale_20200624T153933"
+- "hotel_pan_sixth_6in_013_kale_20200624T155010"
+- "hotel_pan_sixth_6in_014_kale_20200624T155636"
+- "hotel_pan_sixth_6in_023_kale_20200624T155329"
+- "hotel_pan_sixth_6in_024_kale_20200624T155509"
+test:
+- "hotel_pan_sixth_6in_004_kale_20200624T155759"
+- "hotel_pan_sixth_6in_022_kale_20200624T154117"

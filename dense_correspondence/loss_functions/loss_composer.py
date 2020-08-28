@@ -195,6 +195,8 @@ def get_same_object_across_scene_loss(pixelwise_contrastive_loss, image_a_pred, 
     """
     Simple wrapper for pixelwise_contrastive_loss functions.  Args and return args documented above in get_loss()
     """
+    pcl = pixelwise_contrastive_loss
+
     blind_non_match_loss = zero_loss()
     if not (SpartanDataset.is_empty(blind_non_matches_a.data)):
         blind_non_match_loss, num_hard_negatives =\

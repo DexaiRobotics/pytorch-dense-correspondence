@@ -302,9 +302,12 @@ class DenseCorrespondenceTraining(object):
                 metadata = data
 
                 if (match_type == -1).all():
-                    print "\n empty data, continuing \n"
+                    print "empty data, continuing. train step %s" % loss_current_iteration
                     continue
 
+                if matches_a.nelement() == 0:
+                    print "no matches, continuing. train step %s" % loss_current_iteration
+                    continue
 
                 data_type = metadata["type"][0]
                 

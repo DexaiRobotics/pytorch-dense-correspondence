@@ -1,0 +1,6 @@
+logs_root_path: fusion_rosbags
+
+single_object_scenes_config_files:
+- mango.yaml
+
+multi_object_scenes_config_files: []

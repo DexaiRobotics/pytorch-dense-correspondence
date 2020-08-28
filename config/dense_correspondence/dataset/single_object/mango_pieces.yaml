@@ -1,0 +1,14 @@
+logs_root_path: fusion_rosbags
+object_id: "mango_pieces"
+train:
+- "hotel_pan_sixth_6in_012_mango_20200709T125451"
+- "hotel_pan_sixth_6in_012_mango_20200709T125620"
+- "hotel_pan_sixth_6in_012_mango_20200709T125749"
+- "hotel_pan_sixth_6in_012_mango_20200709T125904"
+- "hotel_pan_sixth_6in_012_mango_20200709T130029"
+- "hotel_pan_sixth_6in_012_mango_20200709T130453"
+- "hotel_pan_sixth_6in_012_mango_20200709T130610"
+- "hotel_pan_sixth_6in_012_mango_20200709T130725"
+test:
+- "hotel_pan_sixth_6in_012_mango_20200709T130134"
+- "hotel_pan_sixth_6in_012_mango_20200709T130300"
